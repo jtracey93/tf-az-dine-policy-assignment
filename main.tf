@@ -26,6 +26,6 @@ resource "azurerm_policy_assignment" "dine-pol-asi" {
 resource "azurerm_role_assignment" "dine-pol-rbac-asi" {
   principal_id         = azurerm_policy_assignment.dine-pol-asi.identity[0].principal_id
   scope                = var.assignmentScope
-  role_definition_name = var.policyMsiRbacRole
+  role_definition_name = var.policyMsiRbacRoleName
 }
 
