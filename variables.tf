@@ -30,7 +30,7 @@ variable "policyParameters" {
   description = "The Azure Policy Assignment parameters, if required."
 }
 
-variable "policyMsiRbacRoleName" {
+variable "policyMsiRbacRoleNames" {
   type        = set(string)
   description = "Azure RBAC Role Names required for DINE policy MSI. Can specify multiple RBAC roles as a set."
 }
