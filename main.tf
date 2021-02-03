@@ -8,13 +8,18 @@ terraform {
   required_version = ">= 0.13"
 }
 
+
+locals {
+  region = (var.policyARMLocation != "" ? var.policyARMLocation : "North Europe" )
+  rbacScope = (var.rbacAssignmentScope != "" ? var.rbacAssignmentScope : var.policyAssignmentScope )
+}
 resource "azurerm_policy_assignment" "dine-pol-asi" {
   name                 = var.policyName
-  scope                = var.assignmentScope
+  scope                = var.policyAssignmentScope
   policy_definition_id = var.policyDefinitionID
   description          = var.policyDescription
   display_name         = var.policyName
-  location             = "North Europe"
+  location             = local.region
 
   identity {
     type = "SystemAssigned"
@@ -27,7 +32,7 @@ resource "azurerm_role_assignment" "dine-pol-rbac-asi" {
   for_each = var.policyMsiRbacRoleNames
 
   principal_id         = azurerm_policy_assignment.dine-pol-asi.identity[0].principal_id
-  scope                = var.assignmentScope
+  scope                = local.rbacAssignmentScope
   role_definition_name = each.value
 }
 

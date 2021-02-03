@@ -9,15 +9,25 @@ variable "policyName" {
 
 }
 
+variable "policyARMLocation" {
+  type = string
+  description = "The region to target the deployment at. Note that policies are not region specific so this is mainly for Managed Identity purposes"
+}
+
 variable "policyDescription" {
   type        = string
   description = "The Azure policy assignment description."
 
 }
 
-variable "assignmentScope" {
+variable "policyAssignmentScope" {
   type        = string
   description = "The ARM resoruce ID of where this policy should be assigned. e.g Management Group, Subscription etc."
+}
+
+variable "rbacAssignmentScope" {
+  type        = string
+  description = "The ARM resoruce ID of where this policies managed identity should be assigned. e.g Management Group, Subscription etc."
 }
 
 variable "policyDefinitionID" {
@@ -34,3 +44,5 @@ variable "policyMsiRbacRoleNames" {
   type        = set(string)
   description = "Azure RBAC Role Names required for DINE policy MSI. Can specify multiple RBAC roles as a set."
 }
+
+
