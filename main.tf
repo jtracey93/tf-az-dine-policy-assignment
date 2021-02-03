@@ -10,9 +10,10 @@ terraform {
 
 
 locals {
-  region = (var.policyARMLocation != "" ? var.policyARMLocation : "North Europe" )
-  rbacScope = (var.rbacAssignmentScope != "" ? var.rbacAssignmentScope : var.policyAssignmentScope )
+  region    = (var.policyARMLocation != "" ? var.policyARMLocation : "North Europe")
+  rbacScope = (var.rbacAssignmentScope != "" ? var.rbacAssignmentScope : var.policyAssignmentScope)
 }
+
 resource "azurerm_policy_assignment" "dine-pol-asi" {
   name                 = var.policyName
   scope                = var.policyAssignmentScope
@@ -31,9 +32,9 @@ resource "azurerm_policy_assignment" "dine-pol-asi" {
 resource "azurerm_role_assignment" "dine-pol-rbac-asi" {
   for_each = var.policyMsiRbacRoleNames
 
-  principal_id         = azurerm_policy_assignment.dine-pol-asi.identity[0].principal_id
-  scope                = local.rbacAssignmentScope
-  role_definition_name = each.value
+  principal_id                     = azurerm_policy_assignment.dine-pol-asi.identity[0].principal_id
+  scope                            = local.rbacAssignmentScope
+  role_definition_name             = each.value
   skip_service_principal_aad_check = true
 }
 

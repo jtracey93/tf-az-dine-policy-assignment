@@ -10,7 +10,7 @@ variable "policyName" {
 }
 
 variable "policyARMLocation" {
-  type = string
+  type        = string
   description = "The region to target the deployment at. Note that policies are not region specific so this is mainly for Managed Identity purposes"
 }
 
