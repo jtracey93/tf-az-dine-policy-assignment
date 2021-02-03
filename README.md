@@ -2,6 +2,8 @@
 
 This module handles the assignment of an Azure DINE Policy as well as the Managed Service Identity creation and RBAC assignment at the same policy assignment scope (can be changed to another scope if required as well).
 
+> **Latest Version:** [v0.3.4](https://github.com/jtracey93/tf-az-dine-policy-assignment/releases/tag/v0.3.4)
+
 ## Example Usage
 
 ```hcl
@@ -26,7 +28,7 @@ module "dine-pol-asi" {
   ) //OPTIONAL - Defaults to 'Null'
 
   policyMsiRbacRoleNames = ["Owner", "Contributor"] 
-  rbacAssignmentScope    = "/providers/Microsoft.Management/managementGroups/Platform" //OPTIONAL - Default to the same value provided to 'policyAssignmentScope' input variable above
+  rbacAssignmentScope    = "/providers/Microsoft.Management/managementGroups/Platform" //OPTIONAL - Defaults to the same value provided to 'policyAssignmentScope' input variable above
 
 }
 
