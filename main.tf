@@ -10,8 +10,8 @@ terraform {
 
 
 locals {
-  region    = (var.policyARMLocation != "" ? var.policyARMLocation : "North Europe")
-  rbacScope = (var.rbacAssignmentScope != "" ? var.rbacAssignmentScope : var.policyAssignmentScope)
+  region    = (var.policyARMLocation != null ? var.policyARMLocation : "North Europe")
+  rbacScope = (var.rbacAssignmentScope != null ? var.rbacAssignmentScope : var.policyAssignmentScope)
 }
 
 resource "azurerm_policy_assignment" "dine-pol-asi" {
