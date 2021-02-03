@@ -12,6 +12,7 @@ variable "policyName" {
 variable "policyARMLocation" {
   type        = string
   description = "The region to target the deployment at. Note that policies are not region specific so this is mainly for Managed Identity purposes"
+  default     = null
 }
 
 variable "policyDescription" {
@@ -28,6 +29,7 @@ variable "policyAssignmentScope" {
 variable "rbacAssignmentScope" {
   type        = string
   description = "The ARM resoruce ID of where this policies managed identity should be assigned. e.g Management Group, Subscription etc."
+  default     = null
 }
 
 variable "policyDefinitionID" {
